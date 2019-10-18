@@ -40,14 +40,15 @@ class Week():
 			mouse_strain = 'CD1'
 			female_number = '15'
 
-		if self.injtype == "1":
-			if input('Guide-test (1) or experiment (2)? ') == '1':
-				CRISPR = self.CRISPR(False, False, mouse_strain, female_number)
-				if CRISPR:
-					os.system("open CRISPR.ics")
+                if self.injtype == "1":
+                        CRISPR_type = input('Guide-test (1) or experiment (2)? ')
+                        if CRISPR_type == '1':
+                                CRISPR = self.CRISPR(False, False, mouse_strain, female_number)
+                                if CRISPR:
+                                        os.system("open CRISPR.ics")
 
 				
-			elif '2':
+			elif CRISPR_type == '2':
 				CRISPR = self.CRISPR(True, True, mouse_strain, female_number)
 				if CRISPR:
 					os.system("open crispr.ics")
@@ -60,7 +61,7 @@ class Week():
 
 		
 
-	def CRISPR(self, ET, pseudos, mouse_strain, female_number):
+	def CRISPR(self, ET_value, pseudos, mouse_strain, female_number):
 	
 
 		date = datetime.strptime(self.date, '%m/%d/%Y')
@@ -103,21 +104,20 @@ class Week():
 			event5.add('dtend', datetime(int(splitHCG[2]),int(splitHCG[0]),int(splitHCG[1]),15,0,0,tzinfo=eastern))
 			cal.add_component(event5)
 
-		if pseudos == True:
 			event6.add('summary', 'Check pseudos - RF')
 			event6.add('dtstart', datetime(int(splitTear[2]),int(splitTear[0]),int(splitTear[1]),9,0,0,tzinfo=eastern))
 			event6.add('dtend', datetime(int(splitTear[2]),int(splitTear[0]),int(splitTear[1]),10,0,0,tzinfo=eastern))
 			cal.add_component(event6)
 
-		if ET == True:
+		if ET_value == True:
 			event7.add('summary', f'e0.5 transfer for {self.investigator_name}')
 			event7.add('dtstart', datetime(int(splitET[2]),int(splitET[0]),int(splitET[1]),13,0,0,tzinfo=eastern))
 			event7.add('dtend', datetime(int(splitET[2]),int(splitET[0]),int(splitET[1]),15,0,0,tzinfo=eastern))
 			cal.add_component(event7)
-		if ET == True:
+		
 			crispr_name = f'CRISPR for {self.investigator_name}'
 		else:
-			crispr_name = f'Guide-test for {self.investigator_name}'
+                        crispr_name = f'Guide-test for {self.investigator_name}'
 
 		event8.add('summary', crispr_name)
 		event8.add('dtstart', datetime(int(splitInjection[2]),int(splitInjection[0]),int(splitInjection[1]),10,0,0,tzinfo=eastern))
