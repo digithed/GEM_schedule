@@ -23,6 +23,7 @@ event8 = Event()
 
 class Week():
 
+<<<<<<< HEAD
 	def __init__(self, date, strain, injtype, investigator_name):
 		self.date = date
 		self.strain = strain
@@ -97,6 +98,43 @@ class Week():
 				ESC = self.ESC(mouse_strain)
 				if ESC:
 					os.system("open ESC.ics")
+=======
+	def __init__(self, date, injtype, investigator_name):
+		self.date = date
+		self.injtype = injtype
+		self.investigator_name = investigator_name
+
+		if input('Enter mouse strain (B6:1, BDF:2, CD1:3) ') == '1':
+			mouse_strain = 'B6'
+			female_number = '15'
+				
+		elif '2':
+			mouse_strain = 'BDF'
+			female_number = '6'
+			
+		elif '3':
+			mouse_strain = 'CD1'
+			female_number = '15'
+
+                if self.injtype == "1":
+                        CRISPR_type = input('Guide-test (1) or experiment (2)? ')
+                        if CRISPR_type == '1':
+                                CRISPR = self.CRISPR(False, False, mouse_strain, female_number)
+                                if CRISPR:
+                                        os.system("open CRISPR.ics")
+
+				
+			elif CRISPR_type == '2':
+				CRISPR = self.CRISPR(True, True, mouse_strain, female_number)
+				if CRISPR:
+					os.system("open crispr.ics")
+			
+				
+		if self.injtype == "2":
+			ESC = self.ESC()
+			if ESC:
+				os.system("open ESC.ics")
+>>>>>>> 8caa6c9b7625619c9b78132e2aa8c9097f9dbc82
 
 		
 
@@ -169,7 +207,11 @@ class Week():
 		return True
 
 	
+<<<<<<< HEAD
 	def ESC(self, strain):
+=======
+	def ESC(self):
+>>>>>>> 8caa6c9b7625619c9b78132e2aa8c9097f9dbc82
 		ESC = False
 		inj_name = ''
 
@@ -204,22 +246,38 @@ class Week():
 		splitInjection = date.strftime('%m/%d/%Y').split('/')
 		splitPsuedos = pseudos.strftime('%m/%d/%Y').split('/')
 
+<<<<<<< HEAD
 		event.add('summary', f'PMS {strain} mice')
+=======
+		event.add('summary', 'PMS CD1 mice')
+>>>>>>> 8caa6c9b7625619c9b78132e2aa8c9097f9dbc82
 		event.add('dtstart', datetime(int(splitPMS[2]),int(splitPMS[0]),int(splitPMS[1]),14,0,0,tzinfo=eastern))
 		event.add('dtend', datetime(int(splitPMS[2]),int(splitPMS[0]),int(splitPMS[1]),15,0,0,tzinfo=eastern))
 		cal.add_component(event)
 
+<<<<<<< HEAD
 		event2.add('summary', f'HCG + mate {strain} mice')
+=======
+		event2.add('summary', 'HCG + mate CD1 mice')
+>>>>>>> 8caa6c9b7625619c9b78132e2aa8c9097f9dbc82
 		event2.add('dtstart', datetime(int(splitHCG[2]),int(splitHCG[0]),int(splitHCG[1]),13,0,0,tzinfo=eastern))
 		event2.add('dtend', datetime(int(splitHCG[2]),int(splitHCG[0]),int(splitHCG[1]),14,0,0,tzinfo=eastern))
 		cal.add_component(event2)
 
+<<<<<<< HEAD
 		event3.add('summary', f'Check {strain} plugs')
+=======
+		event3.add('summary', 'Check CD1 plugs')
+>>>>>>> 8caa6c9b7625619c9b78132e2aa8c9097f9dbc82
 		event3.add('dtstart', datetime(int(splitPlugs[2]),int(splitPlugs[0]),int(splitPlugs[1]),8,0,0,tzinfo=eastern))
 		event3.add('dtend', datetime(int(splitPlugs[2]),int(splitPlugs[0]),int(splitPlugs[1]),9,0,0,tzinfo=eastern))
 		cal.add_component(event3)
 
+<<<<<<< HEAD
 		event4.add('summary', f'Flush {strain} two-cell embryos')
+=======
+		event4.add('summary', 'Flush CD1 two-cell embryos')
+>>>>>>> 8caa6c9b7625619c9b78132e2aa8c9097f9dbc82
 		event4.add('dtstart', datetime(int(splitFlush[2]),int(splitFlush[0]),int(splitFlush[1]),9,0,0,tzinfo=eastern))
 		event4.add('dtend', datetime(int(splitFlush[2]),int(splitFlush[0]),int(splitFlush[1]),10,0,0,tzinfo=eastern))
 		cal.add_component(event4)
@@ -253,8 +311,14 @@ class Week():
 	
 
 user_date = input("Input injection date ")
+<<<<<<< HEAD
 strain = input('Enter mouse strain (B6:1, BDF:2, CD1:3) ')
 user_inj = input("Input injection type\n1 = CRISPR\n2 = ESC ")
 user_investigator = input("Input name of investigator for injection ")
 w = Week(user_date, strain, user_inj, user_investigator)
+=======
+user_inj = input("Input injection type\n1 = CRISPR\n2 = ESC ")
+user_investigator = input("Input name of investigator for injection ")
+w = Week(user_date, user_inj, user_investigator)
+>>>>>>> 8caa6c9b7625619c9b78132e2aa8c9097f9dbc82
 
